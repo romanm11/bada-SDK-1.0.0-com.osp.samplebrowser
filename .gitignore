@@ -1,1 +1,6 @@
-bin
+/@dot
+/build.xml
+/com.osp.samplebrowser_*.jar
+/javaCompiler...args
+/@dot.log
+/bin

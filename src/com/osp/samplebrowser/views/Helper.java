@@ -26,9 +26,9 @@ public class Helper {
 	//private static final String BADA_SDK_PATH_VAR = "BADA_SDK_HOME";
 	
 	private final static String OSP_CONF_FILE = ".badaprj";
-	private final static String OSP_CONF = "\\" + OSP_CONF_FILE;
+	private final static String OSP_CONF = java.io.File.separatorChar + OSP_CONF_FILE;
 	private final static String BADA_MODEL_FOLDER_WAVE = "Wave";
-	private static final String BADA_SDK_MODEL_PATH = "\\Model";
+	private static final String BADA_SDK_MODEL_PATH = java.io.File.separatorChar + "Model";
 	
 	private final static int MAX_WAIT_TIME = 100000000;
 
@@ -279,7 +279,7 @@ public class Helper {
 		
 		// To use bada IDE Class, OspPropertyStore
 		
-		IFile badaFile = proj.getFile("\\" + OSP_CONF_FILE);		
+		IFile badaFile = proj.getFile(java.io.File.separatorChar + OSP_CONF_FILE);		
 		System.out.println("+ " + badaFile.getFullPath());
 
 		// SDK Root

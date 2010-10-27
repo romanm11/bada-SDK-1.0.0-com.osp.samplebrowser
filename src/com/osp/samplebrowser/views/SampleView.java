@@ -61,9 +61,9 @@ public class SampleView extends ViewPart {
 	private static String selected = null;
 	
 	private static final String BADA_DEV_PATH_VAR = "P4ROOT";
-	private static final String BADA_DEV_SAMPLE_PATH = "\\OspdApp\\Samples";
+	private static final String BADA_DEV_SAMPLE_PATH = java.io.File.separatorChar + "OspdApp" + java.io.File.separatorChar + "Samples";
 	//private static final String BADA_SDK_PATH_VAR = "BADA_SDK_HOME";
-	private static final String BADA_SDK_SAMPLE_PATH = "\\Samples";
+	private static final String BADA_SDK_SAMPLE_PATH = java.io.File.separatorChar + "Samples";
 	private final static String OSP_CONF_FILE = ".badaprj";
 	
 	private static final String PREFIX_TEMP = "_tmp_";
@@ -395,9 +395,9 @@ public class SampleView extends ViewPart {
 					sdkPath = WorkspaceUtils.getDefaultBadaSdkRoot();
 
 					if (Helper.isSDK())
-						sourcePath = sdkPath + BADA_SDK_SAMPLE_PATH + "\\" + selected;
+						sourcePath = sdkPath + BADA_SDK_SAMPLE_PATH + java.io.File.separatorChar + selected;
 					else
-						sourcePath = sdkPath + BADA_DEV_SAMPLE_PATH + "\\" + selected;
+						sourcePath = sdkPath + BADA_DEV_SAMPLE_PATH + java.io.File.separatorChar + selected;
 			
 					File samplePath = new File(sourcePath);
 					int depth = Helper.findCProjectWithDepth(samplePath);
@@ -427,26 +427,26 @@ public class SampleView extends ViewPart {
 							else
 								System.out.println("-- failed : rm -rf " + tmpPath);
 							*/
-							Process p = Runtime.getRuntime().exec("rm -rf " + tmpPath.toString() + "\\" + OSP_CONF_FILE);
+							Process p = Runtime.getRuntime().exec("rm -rf " + tmpPath.toString() + java.io.File.separatorChar + OSP_CONF_FILE);
 							int result = p.waitFor();
 							if (result == 0)
-								System.out.println("-- successed : rm -rf " + tmpPath.toString() + "\\" + OSP_CONF_FILE);
+								System.out.println("-- successed : rm -rf " + tmpPath.toString() + java.io.File.separatorChar + OSP_CONF_FILE);
 							else
-								System.out.println("-- failed : rm -rf " + tmpPath.toString() + "\\" + OSP_CONF_FILE);
+								System.out.println("-- failed : rm -rf " + tmpPath.toString() + java.io.File.separatorChar + OSP_CONF_FILE);
 							
-							p = Runtime.getRuntime().exec("rm -rf " + tmpPath.toString() + "\\.cproject");
+							p = Runtime.getRuntime().exec("rm -rf " + tmpPath.toString() + java.io.File.separatorChar + ".cproject");
 							result = p.waitFor();
 							if (result == 0)
-								System.out.println("-- successed : rm -rf " + tmpPath.toString() + "\\.cproject");
+								System.out.println("-- successed : rm -rf " + tmpPath.toString() + java.io.File.separatorChar + ".cproject");
 							else
-								System.out.println("-- failed : rm -rf " + tmpPath.toString() + "\\.cproject");
+								System.out.println("-- failed : rm -rf " + tmpPath.toString() + java.io.File.separatorChar + ".cproject");
 							
-							p = Runtime.getRuntime().exec("rm -rf " + tmpPath.toString() + "\\.project");
+							p = Runtime.getRuntime().exec("rm -rf " + tmpPath.toString() + java.io.File.separatorChar + ".project");
 							result = p.waitFor();
 							if (result == 0)
-								System.out.println("-- successed : rm -rf " + tmpPath.toString() + "\\.project");
+								System.out.println("-- successed : rm -rf " + tmpPath.toString() + java.io.File.separatorChar + ".project");
 							else
-								System.out.println("-- failed : rm -rf " + tmpPath.toString() + "\\.project");
+								System.out.println("-- failed : rm -rf " + tmpPath.toString() + java.io.File.separatorChar + ".project");
 						}
 						/*
 						tmpPath.mkdir();
@@ -764,7 +764,7 @@ public class SampleView extends ViewPart {
 			try {
 				System.out.println("--- Deleting project : " + tmpProject);
 				tmpProject.open(new NullProgressMonitor());
-				//MODIFIED 2010.03.12 - Suwan Jeon, ´ÝÈù Resource¸¦ »èÁ¦ÇØ¼­ ¿¹¿Ü°¡ ¹ß»ýÇÑ´Ù. »èÁ¦µÈ Resource´Â ´ÝÀ» ÇÊ¿ä ¾ø´Â °Í °°À½.
+				//MODIFIED 2010.03.12 - Suwan Jeon, ï¿½ï¿½ï¿½ï¿½ Resourceï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½Ü°ï¿½ ï¿½ß»ï¿½ï¿½Ñ´ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Resourceï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 				tmpProject.close(new NullProgressMonitor());
 				
 				// From this point, open files close automatically
